@@ -1,7 +1,10 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors');
 
 const app = express()
+
+app.use(cors())
 
 mongoose.connect('mongodb+srv://benmitchell0405:Password123@cluster0.zwmwjos.mongodb.net/2d_platformer')
   .then(() => {
@@ -47,6 +50,10 @@ app.get("/leaderboard", (req, res) => {
             res.status(500).json({ error: "Failed to fetch leaderboard entries" });
         });
 });
+
+app.use((err, req, res, next) => {
+    res.status(500).send({msg: "developer error"})
+})
 
 module.exports= app
 
