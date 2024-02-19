@@ -49,6 +49,8 @@ app.get("/leaderboard", (req, res) => {
 });
 
 module.exports= app
-// app.listen(3001, () => {
-//     console.log("server is running")
-// })
+
+const PORT = process.env.PORT || 3000; // Use the provided port by Render or default to 3000
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
