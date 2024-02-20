@@ -20,4 +20,15 @@ describe("GET requests", () => {
       })
     });
   });
+
+  describe("GET /incorrectpath", () => {
+    test("should return a 404 error",() => {
+      return request(app)
+      .get("/incorrectpath").then((response) => {
+        console.log(response.body.msg)
+        expect(response.status).toBe(404);
+        expect(response.body.msg).toBe("404: endpoint not found");
+      })
+    });
+  });
 });

@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const connection = require('./connection')
+const {handleIncorrectPath} = require('./controllers/endpoint.controllers')
 const cors = require('cors');
 
 const app = express()
@@ -23,7 +24,6 @@ const LeaderboardSchema = mongoose.Schema({
 
 const LeaderboardModel = mongoose.model("leaderboard", LeaderboardSchema);
 
-// app.all('*', handleIncorrectPath)
 
 app.get("/getUsers", (req, res) => {
     console.log(UserModel)
@@ -44,6 +44,9 @@ app.get("/leaderboard", (req, res) => {
             res.status(500).json({ error: "Failed to fetch leaderboard entries" });
         });
 });
+
+app.all('*', handleIncorrectPath)
+
 
 app.use((err, req, res, next) => {
     if (err.status === 404) {
