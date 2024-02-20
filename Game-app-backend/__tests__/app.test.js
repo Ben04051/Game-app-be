@@ -2,6 +2,11 @@ const request = require("supertest");
 const app = require("../app");
 const connection = require('../connection')
 
+beforeAll(async () => {
+  await connection.connect()})
+
+afterAll(async () => {
+  await connection.disconnect()})
 
 describe("GET requests", () => {
    

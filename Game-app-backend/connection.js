@@ -11,12 +11,13 @@ function connect() {
     }
 
     mongoose.connect(process.env.DATABASE_URL)
-        .then(() => {
-            const currentDB = mongoose.connection.db.databaseName;
-        })
         .catch((err) => {
             console.error("Error connecting to MongoDB:", err);
         });
 }
 
-module.exports = { connect };
+function disconnect() {
+    return mongoose.disconnect();
+}
+
+module.exports = { connect , disconnect};

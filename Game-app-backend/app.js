@@ -1,13 +1,10 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const connection = require('./connection')
 const cors = require('cors');
 
 const app = express()
 
 app.use(cors())
-
-connection.connect();
 
 const UserSchema = mongoose.Schema({
     username : String,
@@ -22,6 +19,8 @@ const LeaderboardSchema = mongoose.Schema({
 }, { collection: 'leaderboard' });
 
 const LeaderboardModel = mongoose.model("leaderboard", LeaderboardSchema);
+
+// app.all('*', handleIncorrectPath)
 
 app.get("/getUsers", (req, res) => {
     console.log(UserModel)
@@ -43,6 +42,13 @@ app.get("/leaderboard", (req, res) => {
         });
 });
 
+app.use((err, req, res, next) => {
+    if (err.status === 404) {
+        res.status(404).send({msg: err.msg})
+    } else {
+        next(err)
+    }
+})
 app.use((err, req, res, next) => {
     res.status(500).send({msg: "developer error"})
 })
