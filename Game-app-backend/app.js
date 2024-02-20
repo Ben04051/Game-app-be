@@ -1,10 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const connection = require('./connection')
 const cors = require('cors');
 
 const app = express()
 
 app.use(cors())
+
+connection.connect()
 
 const UserSchema = mongoose.Schema({
     username : String,
