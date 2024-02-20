@@ -8,7 +8,7 @@ function connect() {
         throw new Error('DATABASE_URL not set');
     }
 
-    mongoose.connect(databaseUrl)
+    mongoose.connect(process.env.DATABASE_URL)
         .then(() => {
             console.log("Connected to MongoDB");
             const currentDB = mongoose.connection.db.databaseName;
