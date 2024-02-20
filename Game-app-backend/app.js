@@ -33,7 +33,6 @@ app.get("/getUsers", (req, res) => {
 })
 
 app.get("/leaderboard", (req, res) => {
-    console.log(LeaderboardModel)
     LeaderboardModel.find()
         .then((leaderboard) => {
             res.json(leaderboard);

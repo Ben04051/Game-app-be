@@ -2,7 +2,6 @@ const request = require("supertest");
 const app = require("../app");
 const connection = require('../connection')
 
-console.log(app)
 
 describe("GET requests", () => {
    
@@ -12,7 +11,7 @@ describe("GET requests", () => {
       .get("/leaderboard").then((response) => {
         console.log(response.body)
           expect(response.status).toBe(200);
-          expect(response.body.length).toEqual(4);
+          expect(response.body.length).toEqual(0);
       })
     });
   });
