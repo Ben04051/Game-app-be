@@ -1,14 +1,7 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+const mongoose = require('mongoose')
 
 function connect() {
-    
-
-    if (!process.env.DATABASE_URL) {
-        throw new Error('DATABASE_URL not set');
-    }
-
-    mongoose.connect(databaseUrl)
+    mongoose.connect('mongodb+srv://benmitchell0405:Password123@cluster0.zwmwjos.mongodb.net/test')
         .then(() => {
             console.log("Connected to MongoDB");
             const currentDB = mongoose.connection.db.databaseName;
@@ -18,5 +11,4 @@ function connect() {
             console.error("Error connecting to MongoDB:", err);
         });
 }
-
-module.exports = { connect };
+  module.exports = {connect};

@@ -1,7 +1,11 @@
 const request = require("supertest");
-const app = require("../connection");
+const app = require("../app");
+const connection = require('../connection')
+
+console.log(app)
 
 describe("GET requests", () => {
+   
   describe("GET /leaderboard", () => {
     test("should return leaderboard data",() => {
       return request(app)
