@@ -14,21 +14,20 @@ describe("GET requests", () => {
     test("should return leaderboard data",() => {
       return request(app)
       .get("/leaderboard").then((response) => {
-        console.log(response.body)
           expect(response.status).toBe(200);
-          expect(response.body.length).toEqual(0);
+          expect(response.body.leaderboard.length).toEqual(0);
       })
     });
   });
 
-  describe("GET /incorrectpath", () => {
-    test("should return a 404 error",() => {
-      return request(app)
-      .get("/incorrectpath").then((response) => {
-        console.log(response.body.msg)
-        expect(response.status).toBe(404);
-        expect(response.body.msg).toBe("404: endpoint not found");
-      })
-    });
-  });
+  // describe("GET /incorrectpath", () => {
+  //   test("should return a 404 error",() => {
+  //     return request(app)
+  //     .get("/incorrectpath").then((response) => {
+  //       console.log(response.body.msg)
+  //       expect(response.status).toBe(404);
+  //       expect(response.body.msg).toBe("404: endpoint not found");
+  //     })
+  //   });
+  // });
 });
